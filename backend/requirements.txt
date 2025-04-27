@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+py2neo
+llama_index
+llama_index.llms.ollama
+llama_index.embeddings.ollama
+python-jose
+passlib[bcrypt]
