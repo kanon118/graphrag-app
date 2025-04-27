@@ -6,3 +6,4 @@ llama_index.llms.ollama
 llama_index.embeddings.ollama
 python-jose
 passlib[bcrypt]
+python-multipart
