@@ -1,26 +1,17 @@
-export async function login(username, password) {
-    const response = await fetch('http://localhost:8000/token', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams({ username, password })
-    });
-    return response.json();
-}
+import axios from "axios";
 
-export async function uploadDocument(file, token) {
-    const formData = new FormData();
-    formData.append('file', file);
-    const response = await fetch('http://localhost:8000/upload', {
-        method: 'POST',
-        headers: { Authorization: `Bearer ${token}` },
-        body: formData
-    });
-    return response.json();
-}
+const API_BASE = "http://localhost:8000";
 
-export async function askQuestion(query, token) {
-    const response = await fetch(`http://localhost:8000/ask?query=${encodeURIComponent(query)}`, {
-        headers: { Authorization: `Bearer ${token}` }
-    });
-    return response.json();
-}
+export const api = axios.create({
+  baseURL: API_BASE,
+});
+
+api.interceptors.request.use((config) => {
+  const token = localStorage.getItem("token");
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
+});
+
+export default api;
