@@ -58,8 +58,13 @@ graphrag-app/
 git clone https://github.com/dittnamn/graphrag-app.git
 cd graphrag-app
 
-2. Starta allting första gången
+2.a Starta allting första gången
 docker-compose up --build
+
+2.b Starta front-end
+cd frontend
+docker build -t graphrag-frontend .
+docker run -d -p 3000:80 graphrag-frontend
 
 3. Starta +andra gången
 docker-compose up
